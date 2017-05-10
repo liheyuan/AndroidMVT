@@ -13,4 +13,5 @@
 
     <!-- Common Color -->
     <color name="colorTitle">#FFFFFF</color>
+    <color name="colorSecondaryTitle">#CCCCCC</color>
 </resources>
