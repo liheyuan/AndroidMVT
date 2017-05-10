@@ -13,5 +13,6 @@
 
     <!-- Common Color -->
     <color name="colorTitle">#FFFFFF</color>
-    <color name="colorSecondaryTitle">#CCCCCC</color>
+    <color name="colorSecondaryTitle">#99FFFFFF</color>
+    <color name="colorSlidingMenuBackground">#FFFFFF</color>
 </resources>

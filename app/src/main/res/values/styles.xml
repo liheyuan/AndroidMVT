@@ -12,7 +12,9 @@
         <item name="tabBackground">@color/colorPrimary</item>
         <item name="tabSelectedTextColor">@color/colorTitle</item>
         <item name="tabTextColor">@color/colorSecondaryTitle</item>
-        <item name="tabIndicatorHeight">4dp</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabMaxWidth">0dp</item>
     </style>
 
 </resources>
