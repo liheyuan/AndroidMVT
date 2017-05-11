@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/view_md_toolbar" />
+        <include layout="@layout/include_md_toolbar" />
 
         <android.support.design.widget.TabLayout
             style="@style/TabLayoutTheme"
@@ -29,6 +29,6 @@
     </LinearLayout>
 
     <!-- Sliding Menu -->
-    <include layout="@layout/view_slidingmenu" />
+    <include layout="@layout/include_slidingmenu" />
 
 </android.support.v4.widget.DrawerLayout>

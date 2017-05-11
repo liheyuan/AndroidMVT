@@ -1,6 +1,5 @@
 package com.coder4.amvt.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +27,7 @@ public class SlidingMenuAdapter extends ArrayAdapter<SlidingMenuEntry> {
         if (convertView == null) {
             convertView = LayoutInflater
                     .from(getContext())
-                    .inflate(R.layout.list_view_item_slidingmenu, parent, false);
+                    .inflate(R.layout.list_item_slidingmenu, parent, false);
         }
 
         SlidingMenuEntry entry = getItem(position);
