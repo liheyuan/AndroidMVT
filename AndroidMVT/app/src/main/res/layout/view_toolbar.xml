@@ -5,13 +5,25 @@
     android:layout_height="?android:attr/actionBarSize"
     android:background="@color/colorPrimary">
 
+    <ImageView
+        android:id="@+id/imageViewToolBarLeft"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:scaleType="fitXY"
+         />
+
     <TextView
+        android:id="@+id/textViewToolBarTitle"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical|center_horizontal"
         android:textColor="@color/colorTitle"
         android:textSize="@dimen/textSizeForTitle"
-        android:text="Title"/>
+        android:text="Title"
+        android:layout_marginRight="44dp"/>
 
 </LinearLayout>
