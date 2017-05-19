@@ -13,7 +13,7 @@ import com.coder4.amvt.R;
  * Created by coder4 on 2017/5/10.
  */
 
-public class HomeTabFragment extends Fragment {
+public class HomeTabFragment extends BaseFragment {
     public static final String ARG_PAGE = "ARG_PAGE";
     private int mPage;
 
@@ -26,16 +26,23 @@ public class HomeTabFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mPage = getArguments().getInt(ARG_PAGE);
+    protected void setupView(LayoutInflater inflater, View view, Bundle savedInstanceState) {
+        mPage = getArguments().getInt(ARG_PAGE, 0);
+        TextView textView = (TextView) view.findViewById(R.id.textView);
+        textView.setText("Fragment #" + mPage);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("key", "value");
+                launch(DemoFragment.class, bundle, 0);
+            }
+        });
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hometab, container, false);
-        TextView textView = (TextView) view.findViewById(R.id.textView);
-        textView.setText("Fragment #" + mPage);
-        return view;
+    protected int getResourceLayoutId() {
+        return R.layout.fragment_hometab;
     }
 }
