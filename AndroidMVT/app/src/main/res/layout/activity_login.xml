@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_toolbar" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/image_logo"
+        />
+
+    <EditText
+        android:id="@+id/tvLoginUser"
+        style="@style/FullLineEditTextStyle"
+        android:layout_marginTop="20dp"
+        android:hint="UserName" />
+
+    <EditText
+        android:id="@+id/tvLoginPass"
+        style="@style/FullLineEditTextStyle"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"
+        android:hint="Password" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:theme="@style/FullLineButtonTheme"
+        style="@style/FullLineButtonStyle"
+        android:layout_marginTop="20dp"
+        android:text="Login" />
+
+</LinearLayout>

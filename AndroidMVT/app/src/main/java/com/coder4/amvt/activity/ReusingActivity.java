@@ -13,13 +13,24 @@ import com.coder4.amvt.util.ReusingActivityFragmentUtil;
 
 public class ReusingActivity extends FragmentActivity {
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_reusing);
 
-        ReusingActivityFragmentUtil.loadFragment(getIntent(), this);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        LoginCheckActivity.checkLogin(this, new LoginCheckActivity.LoginCheckCallback() {
+            @Override
+            public void onLogin() {
+                ReusingActivity.super.onPostResume();
+                ReusingActivityFragmentUtil.loadFragment(getIntent(), ReusingActivity.this);
+            }
+        });
     }
 }
