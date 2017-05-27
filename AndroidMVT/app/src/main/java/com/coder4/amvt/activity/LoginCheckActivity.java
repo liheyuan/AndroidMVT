@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.coder4.amvt.agent.LoginAgent;
+import com.coder4.amvt.agent.UserAgent;
 
 
 /**
@@ -45,7 +45,7 @@ public class LoginCheckActivity extends AppCompatActivity {
     }
 
     public static void checkLogin(@NonNull Context content, @NonNull LoginCheckCallback cb) {
-        if (LoginAgent.shared.isLogin()) {
+        if (UserAgent.get().isLogin()) {
             cb.onLogin();
         } else {
             callback = cb;
