@@ -78,7 +78,7 @@ public class UserAgent {
     public void saveCookie(String cookieStr) {
         SharedPreferences.Editor edit = perf.edit();
         edit.putString(STORE_KEY_COOKIE, cookieStr);
-        edit.apply();
+        edit.commit();
     }
 
     public String getCookie() {

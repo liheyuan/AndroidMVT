@@ -22,23 +22,30 @@ public class MyCookieJar implements CookieJar {
 
     @Override
     public void saveFromResponse(HttpUrl httpUrl, List<Cookie> list) {
-        if (cookies != null && cookies.size() > 0) {
+        if (list != null && list.size() > 0) {
             Gson gson = new Gson();
-            UserAgent.get().saveCookie(gson.toJson(cookies));
+            UserAgent.get().saveCookie(gson.toJson(list));
+
+            synchronized (MyCookieJar.class) {
+                cookies = list;
+            }
+
         }
     }
 
     @Override
     public List<Cookie> loadForRequest(HttpUrl httpUrl) {
-        if (cookies == null) {
-            String cookiesStr = UserAgent.get().getCookie();
-            if (StringUtil.isNotEmpty(cookiesStr)) {
-                cookies = new Gson().fromJson(cookiesStr, new TypeToken<List<Cookie>>() {
-                }.getType());
-            } else {
-                cookies = new ArrayList<>();
+        synchronized (MyCookieJar.class) {
+            if (cookies == null) {
+                String cookiesStr = UserAgent.get().getCookie();
+                if (StringUtil.isNotEmpty(cookiesStr)) {
+                    cookies = new Gson().fromJson(cookiesStr, new TypeToken<List<Cookie>>() {
+                    }.getType());
+                } else {
+                    cookies = new ArrayList<>();
+                }
             }
+            return cookies;
         }
-        return cookies;
     }
 }
