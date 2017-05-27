@@ -1,6 +1,7 @@
 package com.coder4.amvt.api;
 
 import com.coder4.amvt.agent.UserAgent;
+import com.coder4.amvt.util.StringUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,7 +32,7 @@ public class MyCookieJar implements CookieJar {
     public List<Cookie> loadForRequest(HttpUrl httpUrl) {
         if (cookies == null) {
             String cookiesStr = UserAgent.get().getCookie();
-            if (cookiesStr != null) {
+            if (StringUtil.isNotEmpty(cookiesStr)) {
                 cookies = new Gson().fromJson(cookiesStr, new TypeToken<List<Cookie>>() {
                 }.getType());
             } else {

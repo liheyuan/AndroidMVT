@@ -27,7 +27,7 @@ public class ApiClient {
         return new OkHttpClient.Builder()
                 .readTimeout(10, TimeUnit.SECONDS)
                 .connectTimeout(10, TimeUnit.SECONDS)
-                //.cookieJar(new MyCookieJar())
+                .cookieJar(new MyCookieJar())
                 .build();
     }
 

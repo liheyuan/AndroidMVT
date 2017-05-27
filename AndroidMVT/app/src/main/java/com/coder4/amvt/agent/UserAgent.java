@@ -10,6 +10,7 @@ import com.coder4.amvt.data.EmptyResult;
 import com.coder4.amvt.rx.ApiResultCallback;
 import com.coder4.amvt.rx.RxSchedulerUtils;
 import com.coder4.amvt.util.HashUtil;
+import com.coder4.amvt.util.StringUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -34,7 +35,7 @@ public class UserAgent {
 
     private UserAgent(Context ctx) {
         perf = ctx.getSharedPreferences(PERF_KEY_USER, Context.MODE_PRIVATE);
-        isLogin = perf.contains(STORE_KEY_COOKIE);
+        isLogin = StringUtil.isNotEmpty(getCookie());
     }
 
     public synchronized static void init(Context ctx) {
