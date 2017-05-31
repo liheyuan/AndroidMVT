@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * Created by coder4 on 2017/5/22.
  */
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.tvLoginUser)
     EditText tvUser;
@@ -33,11 +33,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         EventBus.getDefault().register(this);
+        setTitle("Login");
+    }
 
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+    @Override
+    protected int getResourceLayoutId() {
+        return R.layout.activity_login;
     }
 
     @OnClick(R.id.btnLogin)
