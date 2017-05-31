@@ -17,8 +17,8 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Nullable
-    @BindView(R.id.tvTitle)
-    TextView titleTextView;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,8 +30,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract int getResourceLayoutId();
 
     protected void setTitle(String title) {
-        if (titleTextView != null) {
-            titleTextView.setText(title);
+        if (tvTitle != null) {
+            tvTitle.setText(title);
         }
     }
 }

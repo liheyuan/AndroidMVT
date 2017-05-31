@@ -17,20 +17,20 @@
         />
 
     <EditText
-        android:id="@+id/tvLoginUser"
+        android:id="@+id/et_login_user"
         style="@style/FullLineEditTextStyle"
         android:layout_marginTop="20dp"
         android:hint="UserName" />
 
     <EditText
-        android:id="@+id/tvLoginPass"
+        android:id="@+id/et_login_pass"
         style="@style/FullLineEditTextStyle"
         android:layout_marginTop="20dp"
         android:inputType="textPassword"
         android:hint="Password" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btn_login"
         android:theme="@style/FullLineButtonTheme"
         style="@style/FullLineButtonStyle"
         android:layout_marginTop="20dp"
