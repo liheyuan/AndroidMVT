@@ -10,6 +10,7 @@ The ui and logic are reduced to minimal, just to show Minimum viable technology 
 * Architecture: Main(ToolBar + ViewPager) + SideBar(DrawerLayout)
 * Network: Retrofit + OKHttp3
 * Event Pub/Sub: EventBus 
+* View Inject: Butter Knife
 
 ## How to run
 ```
@@ -25,3 +26,4 @@ Use Android Studio 2.3+
 * 0.3 ReusingActivity
 * 0.4 add fake login
 * 0.5 support network and login
+* 0.6 introduce butter knife as view inject framework
