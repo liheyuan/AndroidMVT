@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_need_auth"
+        style="@style/FullLineSettingCardStyle">
+        <TextView
+            style="@style/FullLineSettingTextViewStyle"
+            android:text="Need Auth Api"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_no_need_auth"
+        style="@style/FullLineSettingCardStyle">
+        <TextView
+            style="@style/FullLineSettingTextViewStyle"
+            android:text="NoNeed Auth Api"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        style="@style/FullLineSettingCardStyle">
+        <TextView
+            style="@style/FullLineSettingTextViewStyle"
+            android:text="Hello"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        style="@style/FullLineSettingCardStyle">
+        <TextView
+            style="@style/FullLineSettingTextViewStyle"
+            android:text="Hello"/>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

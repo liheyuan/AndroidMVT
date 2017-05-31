@@ -15,14 +15,20 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by coder4 on 2017/5/22.
  */
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText tvUser;
-    private EditText tvPass;
+    @BindView(R.id.tvLoginUser)
+    EditText tvUser;
+    @BindView(R.id.tvLoginPass)
+    EditText tvPass;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,20 +37,14 @@ public class LoginActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
 
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
+    }
 
-        Button btn = (Button)findViewById(R.id.btnLogin);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // fake now, so must success
-                String user = tvUser.getText().toString();
-                String pass = tvPass.getText().toString();
-                UserAgent.get().login(user, pass);
-            }
-        });
-
-        tvUser = (EditText)findViewById(R.id.tvLoginUser);
-        tvPass = (EditText)findViewById(R.id.tvLoginPass);
+    @OnClick(R.id.btnLogin)
+    public void onClickLogin() {
+        String user = tvUser.getText().toString();
+        String pass = tvPass.getText().toString();
+        UserAgent.get().login(user, pass);
     }
 
     @Override

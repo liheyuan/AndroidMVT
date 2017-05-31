@@ -13,6 +13,8 @@ import com.coder4.amvt.R;
 import com.coder4.amvt.activity.ReusingActivity;
 import com.coder4.amvt.util.ReusingActivityFragmentUtil;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by coder4 on 2017/5/18.
  */
@@ -28,6 +30,7 @@ public abstract class BaseFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         parentView = inflater.inflate(getResourceLayoutId(), container, false);
+        ButterKnife.bind(this, parentView);
         this.inflater = inflater;
         setupView(inflater, parentView, savedInstanceState);
         return parentView;

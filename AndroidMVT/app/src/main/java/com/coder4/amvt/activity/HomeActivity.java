@@ -15,14 +15,23 @@ import com.coder4.amvt.adapter.HomeTabPageAdapter;
 import com.coder4.amvt.adapter.SlidingMenuAdapter;
 import com.coder4.amvt.data.SlidingMenuEntry;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomeActivity extends AppCompatActivity {
 
     private HomeTabPageAdapter pagerAdapter;
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
-    private ListView slidingMenuListView;
-    private DrawerLayout drawerLayout;
-    private Toolbar toolbar;
+
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R.id.slidingMenuListView)
+    ListView slidingMenuListView;
+    @BindView(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private ActionBarDrawerToggle toggle;
 
@@ -36,24 +45,21 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
 
-        pagerAdapter = new HomeTabPageAdapter(getSupportFragmentManager(), this);
-        viewPager = (ViewPager)findViewById(R.id.viewPager);
+        pagerAdapter = new HomeTabPageAdapter(getSupportFragmentManager());
+
         viewPager.setAdapter(pagerAdapter);
 
-        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
-        slidingMenuListView = (ListView)findViewById(R.id.slidingMenuListView);
         slidingMenuListView.setAdapter(new SlidingMenuAdapter(this, MENU_ENTRIES));
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.app_name);
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.coder4.amvt.fragment.HomeTabFragment;
+import com.coder4.amvt.fragment.MyTabFragment;
 
 /**
  * Created by coder4 on 2017/5/10.
@@ -13,17 +14,19 @@ import com.coder4.amvt.fragment.HomeTabFragment;
 
 public class HomeTabPageAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[]{"tab1","tab2","tab3"};
-    private Context context;
+    private String tabTitles[] = new String[]{"Home", "My Tab", "Your Tab"};
 
-    public HomeTabPageAdapter(FragmentManager fm, Context context) {
+    public HomeTabPageAdapter(FragmentManager fm) {
         super(fm);
-        this.context = context;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return HomeTabFragment.newInstance(position + 1);
+        if (position == 1) {
+            return MyTabFragment.newInstance();
+        } else {
+            return HomeTabFragment.newInstance(position + 1);
+        }
     }
 
     @Override

@@ -11,11 +11,25 @@ import android.widget.TextView;
 import com.coder4.amvt.R;
 import com.coder4.amvt.data.SlidingMenuEntry;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by coder4 on 2017/5/10.
  */
 
 public class SlidingMenuAdapter extends ArrayAdapter<SlidingMenuEntry> {
+
+    static class MyViewHolder {
+        @BindView(R.id.imageViewMenu)
+        ImageView imageView;
+        @BindView(R.id.textViewMenu)
+        TextView textView;
+
+        public MyViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
 
     public SlidingMenuAdapter(Context mContext, SlidingMenuEntry[] data) {
         super(mContext, 0, data);
@@ -24,19 +38,23 @@ public class SlidingMenuAdapter extends ArrayAdapter<SlidingMenuEntry> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        MyViewHolder holder;
+
         if (convertView == null) {
             convertView = LayoutInflater
                     .from(getContext())
                     .inflate(R.layout.list_item_slidingmenu, parent, false);
+            holder = new MyViewHolder(convertView);
+            convertView.setTag(holder);
+
+        } else {
+            holder = (MyViewHolder)convertView.getTag();
         }
 
         SlidingMenuEntry entry = getItem(position);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageViewMenu);
-        TextView textView = (TextView) convertView.findViewById(R.id.textViewMenu);
-
-        imageView.setImageResource(entry.getIconId());
-        textView.setText(entry.getText());
+        holder.imageView.setImageResource(entry.getIconId());
+        holder.textView.setText(entry.getText());
 
         return convertView;
     }
