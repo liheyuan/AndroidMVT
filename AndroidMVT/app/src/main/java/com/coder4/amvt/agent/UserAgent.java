@@ -7,6 +7,7 @@ import com.coder4.amvt.api.ApiClient;
 import com.coder4.amvt.constant.ApiResultError;
 import com.coder4.amvt.constant.BusEvent;
 import com.coder4.amvt.data.EmptyResult;
+import com.coder4.amvt.data.LoginResult;
 import com.coder4.amvt.rx.ApiResultCallback;
 import com.coder4.amvt.rx.RxSchedulerUtils;
 import com.coder4.amvt.util.HashUtil;
@@ -49,11 +50,11 @@ public class UserAgent {
     public void login(String user, String pass) {
         String passEncrypt = HashUtil.sha256("C4MVT_"+pass);
         ApiClient.get().getAccountApi().login(user, passEncrypt)
-                .compose(RxSchedulerUtils.<Response<EmptyResult>>getApiSchedulers())
-                .subscribe(new ApiResultCallback<Response<EmptyResult>>() {
+                .compose(RxSchedulerUtils.<Response<LoginResult>>getApiSchedulers())
+                .subscribe(new ApiResultCallback<Response<LoginResult>>() {
 
                     @Override
-                    public void onApiSucc(Response<EmptyResult> o) {
+                    public void onApiSucc(Response<LoginResult> o) {
                         isLogin = true;
                         EventBus.getDefault().post(new BusEvent.LoginSuccEvent());
                     }
@@ -66,9 +67,20 @@ public class UserAgent {
                 });
     }
 
+    // logout only if is login
+    public boolean autoLogout() {
+        if (isLogin) {
+            logout();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void logout() {
         isLogin = false;
         clearCookie();
+        EventBus.getDefault().post(new BusEvent.LogoutEvent());
     }
 
     public boolean isLogin() {

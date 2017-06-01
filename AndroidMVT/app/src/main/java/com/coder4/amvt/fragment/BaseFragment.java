@@ -62,4 +62,28 @@ public abstract class BaseFragment extends Fragment {
             startActivity(intent);
         }
     }
+
+    public void finish(int resultCode, @Nullable Intent data) {
+        if (getActivity() != null && data != null) {
+            getActivity().setResult(resultCode, data);
+        }
+        finish();
+    }
+
+    public void finish(int resultCode) {
+        finish(resultCode, null);
+    }
+
+    public void finish() {
+        if (getActivity() != null) {
+            getActivity().finish();
+        }
+        /*
+        if (launchModeIsModuleCheck...) {
+            overridePendingTransition(module_in, module_out);
+        } else {
+            overridePendingTransition(push_in, push_out);
+        }
+        */
+    }
 }

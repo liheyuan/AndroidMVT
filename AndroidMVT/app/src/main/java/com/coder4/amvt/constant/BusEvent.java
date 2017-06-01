@@ -12,4 +12,8 @@ public class BusEvent {
     public static class LoginFailEvent {
 
     }
+
+    public static class LogoutEvent {
+
+    }
 }

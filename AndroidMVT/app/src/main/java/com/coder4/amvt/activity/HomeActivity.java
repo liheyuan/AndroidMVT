@@ -13,7 +13,12 @@ import android.widget.ListView;
 import com.coder4.amvt.R;
 import com.coder4.amvt.adapter.HomeTabPageAdapter;
 import com.coder4.amvt.adapter.SlidingMenuAdapter;
+import com.coder4.amvt.constant.BusEvent;
 import com.coder4.amvt.data.SlidingMenuEntry;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +49,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
 
         pagerAdapter = new HomeTabPageAdapter(getSupportFragmentManager());
 
@@ -66,6 +72,12 @@ public class HomeActivity extends BaseActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
     protected int getResourceLayoutId() {
         return R.layout.activity_home;
     }
@@ -78,4 +90,16 @@ public class HomeActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginSucc(BusEvent.LoginSuccEvent event) {
+        pagerAdapter.notifyDataSetChanged();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLogout(BusEvent.LogoutEvent event) {
+        pagerAdapter.notifyDataSetChanged();
+    }
+
+
 }

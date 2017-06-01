@@ -1,12 +1,18 @@
 package com.coder4.amvt.rx;
 
+import com.coder4.amvt.agent.UserAgent;
 import com.coder4.amvt.constant.ApiResultError;
+import com.coder4.amvt.constant.BusEvent;
+import com.coder4.amvt.data.LoginResult;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
+import retrofit2.Response;
 
 
 /**
@@ -28,6 +34,18 @@ public abstract class ApiResultCallback<T> implements Observer<T> {
 
     @Override
     public void onNext(T t) {
+        // From retrofit 2 check status code should be on your own
+        if (t instanceof Response) {
+            Response resp = (Response)t;
+            if (!resp.isSuccessful()) {
+                int code = resp.code();
+                if (code == 401 && UserAgent.get().autoLogout()) {
+                    return ;
+                }
+                onApiFail(ApiResultError.StatusCodeError, code);
+                return ;
+            }
+        }
         onApiSucc(t);
     }
 
@@ -36,9 +54,6 @@ public abstract class ApiResultCallback<T> implements Observer<T> {
         if (t instanceof IOException) {
             // no network
             onApiFail(ApiResultError.NetworkError, 0);
-        } else if (t instanceof HttpException) {
-            // http status code not in [200, 300)
-            onApiFail(ApiResultError.StatusCodeError, ((HttpException) t).code());
         } else {
             // unknown
             onApiFail(ApiResultError.UnknownError, 0);
