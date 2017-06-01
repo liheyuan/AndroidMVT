@@ -17,10 +17,6 @@ import com.coder4.amvt.fragment.YourTabFragment;
 public class HomeTabPageAdapter extends FragmentStatePagerAdapter {
     final int PAGE_COUNT = 3;
     private String tabTitles[] = new String[]{"Home", "My Tab", "Your Tab"};
-    // cached fragment
-    private Fragment loginFragment = LoginFragment.newInstance();
-    private Fragment myTabFragment = MyTabFragment.newInstance();
-    private Fragment yourTabFragment = YourTabFragment.newInstance();
 
     public HomeTabPageAdapter(FragmentManager fm) {
         super(fm);
@@ -34,14 +30,14 @@ public class HomeTabPageAdapter extends FragmentStatePagerAdapter {
             if (UserAgent.get().isLogin()) {
                 switch (position) {
                     case 1:
-                        return myTabFragment;
+                        return MyTabFragment.newInstance();
                     case 2:
-                        return yourTabFragment;
+                        return YourTabFragment.newInstance();
                     default:
                         return HomeTabFragment.newInstance(position + 1);
                 }
             } else {
-                return loginFragment;
+                return LoginFragment.newInstance();
             }
         }
     }

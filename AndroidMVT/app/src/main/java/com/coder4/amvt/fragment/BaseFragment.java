@@ -8,9 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.coder4.amvt.R;
 import com.coder4.amvt.activity.ReusingActivity;
+import com.coder4.amvt.util.KeyboardUtil;
 import com.coder4.amvt.util.ReusingActivityFragmentUtil;
 
 import butterknife.ButterKnife;
@@ -85,5 +87,18 @@ public abstract class BaseFragment extends Fragment {
             overridePendingTransition(push_in, push_out);
         }
         */
+    }
+
+    public void hideKeyboard(View view) {
+        KeyboardUtil.hideSoftKeyboard(getActivity(), view);
+    }
+
+    public void enableKeyboardAdjustPan() {
+        Activity activity = getActivity();
+        if (activity == null) {
+            return ;
+        }
+
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 }
