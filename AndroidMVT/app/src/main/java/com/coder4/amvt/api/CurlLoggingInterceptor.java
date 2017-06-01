@@ -1,8 +1,6 @@
 package com.coder4.amvt.api;
 
-import android.util.Log;
-
-import okhttp3.Interceptor;
+// borrowed & many thanks to https://github.com/LiveTyping/u2020-mvp/blob/master/app/src/internalDebug/java/ru/ltst/u2020mvp/data/api/CurlLoggingInterceptor.java
 
 /*
  * Copyright (C) 2016 Jeff Gilfelt.
@@ -19,6 +17,10 @@ import okhttp3.Interceptor;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import android.util.Log;
+
+import okhttp3.Interceptor;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -49,12 +51,15 @@ public class CurlLoggingInterceptor implements Interceptor {
     public CurlLoggingInterceptor() {
     }
 
-    /** Set any additional curl command options (see 'curl --help'). */
+    /**
+     * Set any additional curl command options (see 'curl --help').
+     */
     public void setCurlOptions(String curlOptions) {
         this.curlOptions = curlOptions;
     }
 
-    @Override public Response intercept(Chain chain) throws IOException {
+    @Override
+    public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
 
         boolean compressed = false;
