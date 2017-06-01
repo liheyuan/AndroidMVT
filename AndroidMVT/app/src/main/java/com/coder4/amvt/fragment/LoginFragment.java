@@ -22,7 +22,7 @@ import butterknife.OnFocusChange;
  * Created by coder4 on 2017/6/1.
  */
 
-public class LoginFragment extends BaseFragment {
+public class LoginFragment extends StaticBaseFragment {
 
     @BindView(R.id.et_login_user)
     EditText etUser;
@@ -50,11 +50,6 @@ public class LoginFragment extends BaseFragment {
     @Override
     protected int getBodyLayoutResourceId() {
         return R.layout.fragment_login;
-    }
-
-    @Override
-    protected void initLoad() {
-
     }
 
     @OnClick(R.id.btn_login)
