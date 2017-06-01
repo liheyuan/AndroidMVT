@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -25,6 +26,8 @@ public class LoginActivity extends BaseActivity {
     EditText etUser;
     @BindView(R.id.et_login_pass)
     EditText etPass;
+    @BindString(R.string.toast_login_fail)
+    String toastLoginFail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +58,11 @@ public class LoginActivity extends BaseActivity {
     public void onLoginSucc(BusEvent.LoginSuccEvent event) {
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginFail(BusEvent.LoginFailEvent event) {
+        toast(toastLoginFail);
     }
 
 }

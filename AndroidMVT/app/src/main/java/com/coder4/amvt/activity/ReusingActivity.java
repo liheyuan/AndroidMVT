@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.coder4.amvt.R;
 import com.coder4.amvt.util.ReusingActivityFragmentUtil;
@@ -42,4 +43,9 @@ public class ReusingActivity extends FragmentActivity {
             startActivity(intent);
         }
     }
+
+    public void toast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+    }
+
 }

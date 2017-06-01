@@ -7,7 +7,12 @@ import android.widget.EditText;
 
 import com.coder4.amvt.R;
 import com.coder4.amvt.agent.UserAgent;
+import com.coder4.amvt.constant.BusEvent;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
@@ -22,6 +27,8 @@ public class LoginFragment extends BaseFragment {
     EditText etUser;
     @BindView(R.id.et_login_pass)
     EditText etPass;
+    @BindString(R.string.toast_login_fail)
+    String toastLoginFail;
 
     public static LoginFragment newInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -53,5 +60,10 @@ public class LoginFragment extends BaseFragment {
         if (!focused) {
             hideKeyboard(view);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginFail(BusEvent.LoginFailEvent event) {
+        toast(toastLoginFail);
     }
 }

@@ -7,4 +7,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="toast_login_fail">Login fail</string>
 </resources>

@@ -28,6 +28,7 @@ public class ApiClient {
                 .readTimeout(10, TimeUnit.SECONDS)
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .cookieJar(new MyCookieJar())
+                .addInterceptor(new CurlLoggingInterceptor())
                 .build();
     }
 

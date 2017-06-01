@@ -105,4 +105,11 @@ public abstract class BaseFragment extends Fragment {
 
         activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
+
+    protected void toast(String msg) {
+        Activity activity = getActivity();
+        if (activity != null && activity instanceof ReusingActivity) {
+            ((ReusingActivity) activity).toast(msg);
+        }
+    }
 }

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.coder4.amvt.R;
 import com.coder4.amvt.util.ReusingActivityFragmentUtil;
@@ -60,6 +61,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else {
             startActivity(intent);
         }
+    }
+
+    public void toast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT);
     }
 
 }
