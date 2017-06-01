@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 
-import com.coder4.amvt.R;
 import com.coder4.amvt.agent.UserAgent;
 
 
@@ -18,12 +16,24 @@ import com.coder4.amvt.agent.UserAgent;
 
 public class LoginCheckActivity extends BaseActivity {
 
+    private static String destFragmentClassKey = "destFragmentClassKey";
     private static int REQUEST_CODE_LOGIN = 1;
-    private static Class<? extends Fragment> fragmentClass = null;
+
+    private Class<? extends Fragment> destFragmentClass = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intentT = getIntent();
+        if (intentT != null) {
+            String clsName = intentT.getStringExtra(destFragmentClassKey);
+            if (clsName != null) {
+                try {
+                    destFragmentClass = (Class<? extends Fragment>) Class.forName(clsName);
+                } catch (Exception e) { }
+            }
+        }
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivityForResult(intent, LoginCheckActivity.REQUEST_CODE_LOGIN);
@@ -40,14 +50,13 @@ public class LoginCheckActivity extends BaseActivity {
 
         finish();
 
-        if (requestCode == REQUEST_CODE_LOGIN && resultCode == RESULT_OK && fragmentClass != null) {
-            launch(fragmentClass);
+        if (requestCode == REQUEST_CODE_LOGIN && resultCode == RESULT_OK && destFragmentClass != null) {
+            launch(destFragmentClass);
         }
 
-        fragmentClass = null;
     }
 
-    public static void checkLogin(@Nullable Context content, @NonNull Class<? extends Fragment> cls) {
+    public static void checkLogin(@Nullable Context content, @NonNull Class<? extends Fragment> destCls) {
         if (content == null) {
             return ;
         }
@@ -55,14 +64,14 @@ public class LoginCheckActivity extends BaseActivity {
         if (UserAgent.get().isLogin()) {
             if (content instanceof ReusingActivity) {
                 ReusingActivity ra = (ReusingActivity)content;
-                ra.launch(cls);
+                ra.launch(destCls);
             } else if (content instanceof BaseActivity) {
                 BaseActivity ba = (BaseActivity)content;
-                ba.launch(cls);
+                ba.launch(destCls);
             }
         } else {
-            fragmentClass = cls;
             Intent intent = new Intent(content, LoginCheckActivity.class);
+            intent.putExtra(destFragmentClassKey, destCls.getName());
             content.startActivity(intent);
         }
     }
