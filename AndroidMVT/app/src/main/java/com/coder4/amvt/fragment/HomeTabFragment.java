@@ -1,11 +1,13 @@
 package com.coder4.amvt.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.coder4.amvt.R;
+import com.coder4.amvt.activity.LoginCheckActivity;
 import com.coder4.amvt.api.ApiClient;
 import com.coder4.amvt.constant.ApiResultError;
 import com.coder4.amvt.data.NoNeedAuth;
@@ -46,8 +48,10 @@ public class HomeTabFragment extends BaseFragment {
 
     @OnClick(R.id.card_login_protect)
     public void onClickTextView() {
-        Bundle bundle = new Bundle();
-        bundle.putString("key", "value");
-        launch(DemoFragment.class, bundle, 0);
+
+        final Activity activity = getActivity();
+
+        LoginCheckActivity.checkLogin(activity, DemoFragment.class);
+
     }
 }

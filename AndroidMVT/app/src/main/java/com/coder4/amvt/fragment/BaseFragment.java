@@ -45,8 +45,12 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
-    public void launch(Class<? extends Fragment> fragmentClass,
-                       Bundle fragmentArgs,
+    protected void launch(Class<? extends Fragment> fragmentClass) {
+        launch(fragmentClass, null, 0);
+    }
+
+    protected void launch(Class<? extends Fragment> fragmentClass,
+                       @Nullable Bundle fragmentArgs,
                        int reqCode) {
         Activity activity = getActivity();
         if (activity == null) {
@@ -65,18 +69,18 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public void finish(int resultCode, @Nullable Intent data) {
+    protected void finish(int resultCode, @Nullable Intent data) {
         if (getActivity() != null && data != null) {
             getActivity().setResult(resultCode, data);
         }
         finish();
     }
 
-    public void finish(int resultCode) {
+    protected void finish(int resultCode) {
         finish(resultCode, null);
     }
 
-    public void finish() {
+    protected void finish() {
         if (getActivity() != null) {
             getActivity().finish();
         }
@@ -89,11 +93,11 @@ public abstract class BaseFragment extends Fragment {
         */
     }
 
-    public void hideKeyboard(View view) {
+    protected void hideKeyboard(View view) {
         KeyboardUtil.hideSoftKeyboard(getActivity(), view);
     }
 
-    public void enableKeyboardAdjustPan() {
+    protected void enableKeyboardAdjustPan() {
         Activity activity = getActivity();
         if (activity == null) {
             return ;

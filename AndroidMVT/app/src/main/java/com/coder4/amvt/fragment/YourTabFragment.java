@@ -1,6 +1,8 @@
 package com.coder4.amvt.fragment;
 
 import com.coder4.amvt.R;
+import com.coder4.amvt.activity.LoginCheckActivity;
+import com.coder4.amvt.activity.ReusingActivity;
 import com.coder4.amvt.api.ApiClient;
 import com.coder4.amvt.constant.ApiResultError;
 import com.coder4.amvt.data.NeedAuth;
@@ -26,4 +28,5 @@ public class YourTabFragment extends BaseFragment {
     protected int getResourceLayoutId() {
         return R.layout.fragment_yourtab;
     }
+
 }

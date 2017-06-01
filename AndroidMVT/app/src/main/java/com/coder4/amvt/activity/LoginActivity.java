@@ -57,9 +57,4 @@ public class LoginActivity extends BaseActivity {
         finish();
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onLoginFail(BusEvent.LoginFailEvent event) {
-
-    }
-
 }

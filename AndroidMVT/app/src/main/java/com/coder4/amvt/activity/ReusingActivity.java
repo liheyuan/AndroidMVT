@@ -1,7 +1,9 @@
 package com.coder4.amvt.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.coder4.amvt.R;
@@ -16,21 +18,28 @@ public class ReusingActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_reusing);
+        ReusingActivityFragmentUtil.loadFragment(getIntent(), ReusingActivity.this);
 
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    public void launch(Class<? extends Fragment> fragmentClass) {
+        launch(fragmentClass, null, 0);
+    }
 
-        LoginCheckActivity.checkLogin(this, new LoginCheckActivity.LoginCheckCallback() {
-            @Override
-            public void onLogin() {
-                ReusingActivity.super.onPostResume();
-                ReusingActivityFragmentUtil.loadFragment(getIntent(), ReusingActivity.this);
-            }
-        });
+    public void launch(Class<? extends Fragment> fragmentClass,
+                       @Nullable Bundle fragmentArgs,
+                       int reqCode) {
+
+        Intent intent = new Intent(this, ReusingActivity.class);
+        ReusingActivityFragmentUtil.saveReqFragment(intent,
+                fragmentClass,
+                R.id.fragment_container,
+                fragmentArgs);
+        if (reqCode != 0) {
+            startActivityForResult(intent, reqCode);
+        } else {
+            startActivity(intent);
+        }
     }
 }
