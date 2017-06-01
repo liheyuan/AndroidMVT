@@ -21,9 +21,9 @@ import butterknife.ButterKnife;
 public class SlidingMenuAdapter extends ArrayAdapter<SlidingMenuEntry> {
 
     static class MyViewHolder {
-        @BindView(R.id.imageViewMenu)
+        @BindView(R.id.iv_menu)
         ImageView imageView;
-        @BindView(R.id.textViewMenu)
+        @BindView(R.id.tv_menu)
         TextView textView;
 
         public MyViewHolder(View view) {

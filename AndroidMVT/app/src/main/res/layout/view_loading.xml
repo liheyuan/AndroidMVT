@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_loading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        style="@style/ProgressBarStyle"
+        />
+
+    <LinearLayout
+        android:id="@+id/lay_fail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        style="@style/ClickStyle"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_fail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/network_loading_fail"
+            android:textSize="@dimen/font_size_normal"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+</FrameLayout>

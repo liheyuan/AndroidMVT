@@ -5,16 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.coder4.amvt.R;
 import com.coder4.amvt.activity.ReusingActivity;
 import com.coder4.amvt.util.KeyboardUtil;
 import com.coder4.amvt.util.ReusingActivityFragmentUtil;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,23 +30,108 @@ public abstract class BaseFragment extends Fragment {
     protected View parentView;
     protected LayoutInflater inflater;
 
+    @BindView(R.id.tv_toolbar_title)
+    @Nullable
+    TextView tvTitle;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        parentView = inflater.inflate(getResourceLayoutId(), container, false);
-        ButterKnife.bind(this, parentView);
+        parentView = inflater.inflate(R.layout.fragment_base, container, false);
+        inflateHeader();
+        renderLoading();
+        setupView(inflater, savedInstanceState);
         this.inflater = inflater;
-        setupView(inflater, parentView, savedInstanceState);
         return parentView;
     }
 
-    protected abstract int getResourceLayoutId();
+    protected void inflateHeader() {
+        inflateViewStub(R.id.vs_header, getHeaderLayoutResourceId());
+    }
 
-    protected void setupView(LayoutInflater inflater, View view,
-                             Bundle savedInstanceState) {
+    private
+    @Nullable
+    View inflateViewStub(int id, int layoutId) {
+        if (parentView == null) {
+            return null;
+        }
 
+        View stub = findViewById(id);
+        if (!(stub instanceof ViewStub)) {
+            return null;
+        }
+        ViewStub viewStub = (ViewStub) stub;
+        if (layoutId > 0) {
+            viewStub.setLayoutResource(layoutId);
+            View view = viewStub.inflate();
+            viewStub.setVisibility(View.VISIBLE);
+            return view;
+        } else {
+            debugLog("inflateViewStub layoutId is 0, hide it");
+            viewStub.setVisibility(View.GONE);
+            return null;
+        }
+
+    }
+
+    /// SUBCLASS MAY OVERRIDE BEGIN
+
+    protected abstract int getHeaderLayoutResourceId();
+
+    protected abstract int getBodyLayoutResourceId();
+
+    protected abstract void initLoad();
+
+    protected void setupView(LayoutInflater inflater, @Nullable Bundle savedInstanceState) {
+
+    }
+
+    /// SUBCLASS MAY OVERRIDE END
+
+    protected void renderBody() {
+        View v = findViewById(R.id.lay_loading);
+        if (v != null) {
+            v.setVisibility(View.GONE);
+        }
+        inflateViewStub(R.id.vs_body, getBodyLayoutResourceId());
+        ButterKnife.bind(this, parentView);
+    }
+
+    private void switchLoadingView(boolean errMode) {
+        View vLoading = findViewById(R.id.pb_loading);
+        if (vLoading != null) {
+            vLoading.setVisibility(errMode ? View.GONE : View.VISIBLE);
+        }
+        View vFail = findViewById(R.id.lay_fail);
+        if (vFail != null) {
+            vFail.setVisibility(errMode ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    private void renderLoading() {
+        View stub = findViewById(R.id.vs_loading);
+        if (stub instanceof ViewStub) {
+            ((ViewStub) stub).inflate();
+        }
+
+        switchLoadingView(false);
+
+        View vFail = findViewById(R.id.lay_fail);
+        if (vFail != null) {
+            vFail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switchLoadingView(false);
+                    initLoad();
+                }
+            });
+        }
+    }
+
+    protected void renderLoadError() {
+        switchLoadingView(true);
     }
 
     protected void launch(Class<? extends Fragment> fragmentClass) {
@@ -50,8 +139,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void launch(Class<? extends Fragment> fragmentClass,
-                       @Nullable Bundle fragmentArgs,
-                       int reqCode) {
+                          @Nullable Bundle fragmentArgs,
+                          int reqCode) {
         Activity activity = getActivity();
         if (activity == null) {
             return;
@@ -100,7 +189,7 @@ public abstract class BaseFragment extends Fragment {
     protected void enableKeyboardAdjustPan() {
         Activity activity = getActivity();
         if (activity == null) {
-            return ;
+            return;
         }
 
         activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -111,5 +200,24 @@ public abstract class BaseFragment extends Fragment {
         if (activity != null && activity instanceof ReusingActivity) {
             ((ReusingActivity) activity).toast(msg);
         }
+    }
+
+    protected void debugLog(String msg) {
+        Log.d(getClass().getSimpleName(), msg);
+    }
+
+    protected void setTitle(String title) {
+        if (tvTitle != null) {
+            tvTitle.setText(title);
+        }
+    }
+
+    protected
+    @Nullable
+    View findViewById(int id) {
+        if (parentView == null) {
+            return null;
+        }
+        return parentView.findViewById(id);
     }
 }

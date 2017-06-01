@@ -17,7 +17,7 @@ import retrofit2.Response;
  * Created by coder4 on 2017/5/31.
  */
 
-public class YourTabFragment extends BaseFragment {
+public class YourTabFragment extends StaticBaseFragment {
 
     public static YourTabFragment newInstance() {
         YourTabFragment fragment = new YourTabFragment();
@@ -25,7 +25,12 @@ public class YourTabFragment extends BaseFragment {
     }
 
     @Override
-    protected int getResourceLayoutId() {
+    protected int getHeaderLayoutResourceId() {
+        return 0;
+    }
+
+    @Override
+    protected int getBodyLayoutResourceId() {
         return R.layout.fragment_yourtab;
     }
 

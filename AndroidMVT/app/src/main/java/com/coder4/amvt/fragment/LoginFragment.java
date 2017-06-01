@@ -1,6 +1,7 @@
 package com.coder4.amvt.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -36,14 +37,24 @@ public class LoginFragment extends BaseFragment {
     }
 
     @Override
-    protected void setupView(LayoutInflater inflater, View view, Bundle savedInstanceState) {
-        super.setupView(inflater, view, savedInstanceState);
+    protected void setupView(LayoutInflater inflater, @Nullable Bundle savedInstanceState) {
+        super.setupView(inflater, savedInstanceState);
         enableKeyboardAdjustPan();
     }
 
     @Override
-    protected int getResourceLayoutId() {
+    protected int getHeaderLayoutResourceId() {
+        return 0;
+    }
+
+    @Override
+    protected int getBodyLayoutResourceId() {
         return R.layout.fragment_login;
+    }
+
+    @Override
+    protected void initLoad() {
+
     }
 
     @OnClick(R.id.btn_login)

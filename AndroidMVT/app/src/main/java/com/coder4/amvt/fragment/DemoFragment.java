@@ -9,8 +9,18 @@ import com.coder4.amvt.R;
 public class DemoFragment extends BaseFragment {
 
     @Override
-    protected int getResourceLayoutId() {
+    protected int getHeaderLayoutResourceId() {
+        return R.layout.include_toolbar;
+    }
+
+    @Override
+    protected int getBodyLayoutResourceId() {
         return R.layout.fragment_demo;
+    }
+
+    @Override
+    protected void initLoad() {
+
     }
 
 }

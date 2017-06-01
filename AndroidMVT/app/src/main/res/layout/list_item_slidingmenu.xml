@@ -6,7 +6,7 @@
     android:padding="10dp" >
 
     <ImageView
-        android:id="@+id/imageViewMenu"
+        android:id="@+id/iv_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -15,11 +15,11 @@
         android:paddingRight="10dp" />
 
     <TextView
-        android:id="@+id/textViewMenu"
+        android:id="@+id/tv_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/imageViewMenu"
+        android:layout_toRightOf="@+id/iv_menu"
         android:paddingRight="10dp"
         android:text="Item Name"
         android:textColor="@android:color/black"

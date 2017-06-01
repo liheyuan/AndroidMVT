@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/actionBarSize"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimary">
 
     <ImageView
-        android:id="@+id/imageViewToolBarLeft"
+        android:id="@+id/iv_toolbar_left"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="center_vertical"
@@ -16,10 +16,10 @@
          />
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_toolbar_title"
         android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:gravity="center_vertical|center_horizontal"
         android:textColor="@color/colorTitle"
         android:textSize="@dimen/textSizeForTitle"

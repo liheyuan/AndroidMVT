@@ -1,6 +1,5 @@
 package com.coder4.amvt.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,7 +21,7 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Nullable
-    @BindView(R.id.tv_title)
+    @BindView(R.id.tv_toolbar_title)
     TextView tvTitle;
 
     @Override
