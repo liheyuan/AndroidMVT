@@ -1,5 +1,7 @@
 package com.coder4.amvt.view;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.widget.ListView;
 
 import android.content.Context;
@@ -19,7 +21,7 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
         void onLoadMore();
     }
 
-    private static final int REMAIN_VISIBLE_THRESHOLD = 5;
+    private static final int MAX_VISIBLE_THRESHOLD = 5;
 
     private View footView;
     private OnLoadMoreListener loadMoreListener;
@@ -44,6 +46,9 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
     private void init(Context context){
         footView = LayoutInflater.from(context).inflate(R.layout.view_loadmore_footer,null);
         setOnScrollListener(this);
+
+        // work for > L
+        setOverscrollFooter(new ColorDrawable(Color.TRANSPARENT));
     }
 
     @Override
@@ -55,7 +60,7 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
     public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         int lastItemIndex = firstVisibleItem + visibleItemCount;
         if (loadMoreListener != null && canLoadMore && !isLoading &&
-                lastItemIndex + REMAIN_VISIBLE_THRESHOLD >= totalItemCount) {
+                lastItemIndex + MAX_VISIBLE_THRESHOLD >= totalItemCount) {
             isLoading = true;
             loadMoreListener.onLoadMore();
             addFooterView(footView);

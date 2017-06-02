@@ -8,8 +8,6 @@
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@drawable/shape_divider"
-        android:footerDividersEnabled="false"
-        android:overScrollFooter="@android:color/transparent" />
+        android:divider="@drawable/shape_divider" />
 
 </LinearLayout>
