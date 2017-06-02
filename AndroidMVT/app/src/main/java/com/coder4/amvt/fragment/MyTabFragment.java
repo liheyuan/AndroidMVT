@@ -88,4 +88,9 @@ public class MyTabFragment extends StaticBaseFragment {
     public void onClickLoadMore() {
         launch(LoadMoreDemoFragment.class);
     }
+
+    @OnClick(R.id.card_both_load)
+    public void onClickBothLoad() {
+        launch(BothLoadDemoFragment.class);
+    }
 }
