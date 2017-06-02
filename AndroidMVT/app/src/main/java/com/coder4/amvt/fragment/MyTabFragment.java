@@ -78,4 +78,9 @@ public class MyTabFragment extends StaticBaseFragment {
                     }
                 });
     }
+
+    @OnClick(R.id.card_pull_to_refresh)
+    public void onClickPullToRefresh() {
+        launch(PullToRefreshDemoFragment.class);
+    }
 }

@@ -39,11 +39,11 @@ public abstract class BaseFragment extends Fragment implements ILoadingProgress 
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        this.inflater = inflater;
         parentView = inflater.inflate(R.layout.fragment_base, container, false);
         inflateHeader();
         renderLoading();
         setupView(inflater, savedInstanceState);
-        this.inflater = inflater;
         return parentView;
     }
 
