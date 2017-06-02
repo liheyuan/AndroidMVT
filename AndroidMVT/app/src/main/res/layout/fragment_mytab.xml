@@ -29,4 +29,12 @@
             android:text="Pull To Refresh"/>
     </android.support.v7.widget.CardView>
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_load_more"
+        style="@style/FullLineSettingCardStyle">
+        <TextView
+            style="@style/FullLineSettingTextViewStyle"
+            android:text="Load More"/>
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>

@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
  * Created by coder4 on 2017/6/2.
  */
 
-public class PullToRefreshDemoAdapter extends C4MVTBaseAdapter<String> {
+public class ListViewDemoAdapter extends C4MVTBaseAdapter<String> {
 
     static class MyViewHolder {
         @BindView(R.id.tv_text)
@@ -25,22 +25,22 @@ public class PullToRefreshDemoAdapter extends C4MVTBaseAdapter<String> {
         }
     }
 
-    public PullToRefreshDemoAdapter(LayoutInflater inflater) {
+    public ListViewDemoAdapter(LayoutInflater inflater) {
         super(inflater);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        PullToRefreshDemoAdapter.MyViewHolder holder;
+        ListViewDemoAdapter.MyViewHolder holder;
 
         if (convertView == null) {
             convertView = inflater
-                    .inflate(R.layout.list_item_pulltorefreshdemo, parent, false);
-            holder = new PullToRefreshDemoAdapter.MyViewHolder(convertView);
+                    .inflate(R.layout.list_item_listviewdemo, parent, false);
+            holder = new ListViewDemoAdapter.MyViewHolder(convertView);
             convertView.setTag(holder);
 
         } else {
-            holder = (PullToRefreshDemoAdapter.MyViewHolder)convertView.getTag();
+            holder = (ListViewDemoAdapter.MyViewHolder)convertView.getTag();
         }
 
         String str = getItem(position);

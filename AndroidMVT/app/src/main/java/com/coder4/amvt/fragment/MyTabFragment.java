@@ -83,4 +83,9 @@ public class MyTabFragment extends StaticBaseFragment {
     public void onClickPullToRefresh() {
         launch(PullToRefreshDemoFragment.class);
     }
+
+    @OnClick(R.id.card_load_more)
+    public void onClickLoadMore() {
+        launch(LoadMoreDemoFragment.class);
+    }
 }

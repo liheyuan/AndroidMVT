@@ -1,8 +1,10 @@
 package com.coder4.amvt.adapter;
 
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,8 +44,19 @@ public abstract class C4MVTBaseAdapter<T> extends BaseAdapter {
         return position;
     }
 
-    public void updateData(List<T> data) {
+    public void updateData(@Nullable List<T> data) {
         dataList = data;
+        notifyDataSetChanged();
+    }
+
+    public void appendData(@Nullable List<T> data) {
+        if (data == null) {
+            return ;
+        }
+        if (dataList == null) {
+            dataList = new ArrayList();
+        }
+        dataList.addAll(data);
         notifyDataSetChanged();
     }
 }
