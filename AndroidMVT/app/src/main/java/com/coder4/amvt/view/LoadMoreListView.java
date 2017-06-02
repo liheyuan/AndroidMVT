@@ -22,8 +22,6 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
     private static final int REMAIN_VISIBLE_THRESHOLD = 5;
 
     private View footView;
-    private int totalItemCount;
-    private int lastItemIndex;
     private OnLoadMoreListener loadMoreListener;
     private boolean canLoadMore = true;
     private boolean isLoading = false;
@@ -55,10 +53,9 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
 
     @Override
     public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        lastItemIndex = firstVisibleItem + visibleItemCount;
-        this.totalItemCount = totalItemCount;
+        int lastItemIndex = firstVisibleItem + visibleItemCount;
         if (loadMoreListener != null && canLoadMore && !isLoading &&
-                lastItemIndex + REMAIN_VISIBLE_THRESHOLD >= this.totalItemCount) {
+                lastItemIndex + REMAIN_VISIBLE_THRESHOLD >= totalItemCount) {
             isLoading = true;
             loadMoreListener.onLoadMore();
             addFooterView(footView);
@@ -76,6 +73,6 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
     }
 
     public void setCanLoadMore(boolean loadMore) {
-        canLoadMore = false;
+        canLoadMore = loadMore;
     }
 }

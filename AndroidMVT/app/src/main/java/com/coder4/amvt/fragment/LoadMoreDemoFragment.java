@@ -53,8 +53,6 @@ public class LoadMoreDemoFragment extends BaseFragment {
         listView.setAdapter(adapter);
         adapter.updateData(getRandomData());
 
-
-
         listView.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
