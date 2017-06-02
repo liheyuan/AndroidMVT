@@ -11,6 +11,7 @@ The ui and logic are reduced to minimal, just to show Minimum viable technology 
 * Network: Retrofit + OKHttp3
 * Event Pub/Sub: EventBus 
 * View Inject: Butter Knife
+* Dialog:  [Material Dialog](https://github.com/afollestad/material-dialogs)
 
 ## How to run
 ```
@@ -27,3 +28,5 @@ Use Android Studio 2.3+
 * 0.4 add fake login
 * 0.5 support network and login
 * 0.6 introduce butter knife as view inject framework
+* 0.7 okhttp add curl debug
+* 0.8 support loading & retry in basefragment and loading progress animate in api request
