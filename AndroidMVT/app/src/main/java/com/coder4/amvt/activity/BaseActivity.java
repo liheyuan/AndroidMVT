@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coder4.amvt.R;
+import com.coder4.amvt.intf.IToast;
 import com.coder4.amvt.util.ReusingActivityFragmentUtil;
 
 import butterknife.BindView;
@@ -18,7 +19,7 @@ import butterknife.ButterKnife;
  * Created by coder4 on 2017/5/31.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements IToast {
 
     @Nullable
     @BindView(R.id.tv_toolbar_title)
@@ -63,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void toast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

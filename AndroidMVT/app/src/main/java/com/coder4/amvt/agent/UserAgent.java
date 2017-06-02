@@ -6,9 +6,8 @@ import android.content.SharedPreferences;
 import com.coder4.amvt.api.ApiClient;
 import com.coder4.amvt.constant.ApiResultError;
 import com.coder4.amvt.constant.BusEvent;
-import com.coder4.amvt.data.EmptyResult;
 import com.coder4.amvt.data.LoginResult;
-import com.coder4.amvt.rx.ApiResultCallback;
+import com.coder4.amvt.rx.ApiCallback;
 import com.coder4.amvt.rx.RxSchedulerUtils;
 import com.coder4.amvt.util.HashUtil;
 import com.coder4.amvt.util.StringUtil;
@@ -51,7 +50,7 @@ public class UserAgent {
         String passEncrypt = HashUtil.sha256("C4MVT_"+pass);
         ApiClient.get().getAccountApi().login(user, passEncrypt)
                 .compose(RxSchedulerUtils.<Response<LoginResult>>getApiSchedulers())
-                .subscribe(new ApiResultCallback<Response<LoginResult>>() {
+                .subscribe(new ApiCallback<Response<LoginResult>>() {
 
                     @Override
                     public void onApiSucc(Response<LoginResult> o) {

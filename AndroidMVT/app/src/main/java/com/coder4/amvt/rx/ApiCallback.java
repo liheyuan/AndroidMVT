@@ -19,20 +19,17 @@ import retrofit2.Response;
  * Created by coder4 on 2017/5/27.
  */
 
-public abstract class ApiResultCallback<T> implements Observer<T> {
+public abstract class ApiCallback<T> implements Observer<T> {
 
-    @Override
     public void onSubscribe(Disposable disposable) {
 
     }
 
 
-    @Override
     public void onComplete() {
 
     }
 
-    @Override
     public void onNext(T t) {
         // From retrofit 2 check status code should be on your own
         if (t instanceof Response) {
@@ -49,7 +46,6 @@ public abstract class ApiResultCallback<T> implements Observer<T> {
         onApiSucc(t);
     }
 
-    @Override
     public void onError(Throwable t) {
         if (t instanceof IOException) {
             // no network

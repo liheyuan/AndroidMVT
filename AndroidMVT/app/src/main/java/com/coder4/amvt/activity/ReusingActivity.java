@@ -8,13 +8,14 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.coder4.amvt.R;
+import com.coder4.amvt.intf.IToast;
 import com.coder4.amvt.util.ReusingActivityFragmentUtil;
 
 /**
  * Created by coder4 on 2017/5/18.
  */
 
-public class ReusingActivity extends FragmentActivity {
+public class ReusingActivity extends FragmentActivity implements IToast {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class ReusingActivity extends FragmentActivity {
     }
 
     public void toast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

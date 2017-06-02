@@ -5,7 +5,8 @@ import com.coder4.amvt.api.ApiClient;
 import com.coder4.amvt.constant.ApiResultError;
 import com.coder4.amvt.data.NeedAuth;
 import com.coder4.amvt.data.NoNeedAuth;
-import com.coder4.amvt.rx.ApiResultCallback;
+import com.coder4.amvt.rx.AnimateApiCallback;
+import com.coder4.amvt.rx.ApiCallback;
 import com.coder4.amvt.rx.RxSchedulerUtils;
 
 import butterknife.OnClick;
@@ -37,11 +38,15 @@ public class MyTabFragment extends StaticBaseFragment {
         ApiClient.get().getTestApi()
                 .needAuth()
                 .compose(RxSchedulerUtils.<Response<NeedAuth>>getApiSchedulers())
-                .subscribe(new ApiResultCallback<Response<NeedAuth>>() {
+                .subscribe(new AnimateApiCallback<Response<NeedAuth>>(this) {
 
                     @Override
                     public void onApiSucc(Response<NeedAuth> o) {
-                        System.out.println(o.body());
+                        NeedAuth needAuth = o.body();
+                        if (needAuth == null) {
+                            return ;
+                        }
+                        toast(needAuth.getMsg());
                     }
 
                     @Override
@@ -56,11 +61,15 @@ public class MyTabFragment extends StaticBaseFragment {
         ApiClient.get().getTestApi()
                 .noNeedAuth("extra message")
                 .compose(RxSchedulerUtils.<Response<NoNeedAuth>>getApiSchedulers())
-                .subscribe(new ApiResultCallback<Response<NoNeedAuth>>() {
+                .subscribe(new ApiCallback<Response<NoNeedAuth>>() {
 
                     @Override
                     public void onApiSucc(Response<NoNeedAuth> o) {
-                        System.out.println(o.body());
+                        NoNeedAuth noNeedAuth = o.body();
+                        if (noNeedAuth == null) {
+                            return ;
+                        }
+                        toast(noNeedAuth.getMsg());
                     }
 
                     @Override

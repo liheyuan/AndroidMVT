@@ -13,8 +13,11 @@ import android.view.ViewStub;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.coder4.amvt.R;
 import com.coder4.amvt.activity.ReusingActivity;
+import com.coder4.amvt.intf.ILoadingProgress;
+import com.coder4.amvt.intf.IToast;
 import com.coder4.amvt.util.KeyboardUtil;
 import com.coder4.amvt.util.ReusingActivityFragmentUtil;
 
@@ -25,14 +28,11 @@ import butterknife.ButterKnife;
  * Created by coder4 on 2017/5/18.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements ILoadingProgress {
 
     protected View parentView;
     protected LayoutInflater inflater;
-
-    @BindView(R.id.tv_toolbar_title)
-    @Nullable
-    TextView tvTitle;
+    protected @Nullable MaterialDialog loadingDialog = null;
 
     @Nullable
     @Override
@@ -196,9 +196,12 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void toast(String msg) {
+        if (msg == null) {
+            return ;
+        }
         Activity activity = getActivity();
-        if (activity != null && activity instanceof ReusingActivity) {
-            ((ReusingActivity) activity).toast(msg);
+        if (activity != null && activity instanceof IToast) {
+            ((IToast) activity).toast(msg);
         }
     }
 
@@ -207,6 +210,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void setTitle(String title) {
+        TextView tvTitle = (TextView)findViewById(R.id.tv_toolbar_title);
         if (tvTitle != null) {
             tvTitle.setText(title);
         }
@@ -219,5 +223,27 @@ public abstract class BaseFragment extends Fragment {
             return null;
         }
         return parentView.findViewById(id);
+    }
+
+    public void showLoadingDialog(String msg) {
+        dismissLoadingDialog();
+        Activity activity = getActivity();
+        if (activity == null) {
+            return ;
+        }
+        loadingDialog = new MaterialDialog
+                .Builder(activity)
+                .content(msg)
+                .progress(true, 0)
+                .widgetColorRes(R.color.colorPrimary)
+                .cancelable(false)
+                .show();
+    }
+
+    public void dismissLoadingDialog() {
+        if (loadingDialog != null) {
+            loadingDialog.dismiss();
+            loadingDialog = null;
+        }
     }
 }
