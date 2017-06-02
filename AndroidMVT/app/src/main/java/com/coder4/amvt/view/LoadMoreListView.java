@@ -17,7 +17,7 @@ import com.coder4.amvt.R;
  */
 public class LoadMoreListView extends ListView implements AbsListView.OnScrollListener {
 
-    public interface OnLoadMoreListener{
+    public interface OnLoadMoreListener {
         void onLoadMore();
     }
 
@@ -43,8 +43,8 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
         init(context);
     }
 
-    private void init(Context context){
-        footView = LayoutInflater.from(context).inflate(R.layout.view_loadmore_footer,null);
+    private void init(Context context) {
+        footView = LayoutInflater.from(context).inflate(R.layout.view_loadmore_footer, null);
         setOnScrollListener(this);
 
         // work for > L
@@ -67,12 +67,12 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
         }
     }
 
-    public void setOnLoadMoreListener(OnLoadMoreListener listener){
-        loadMoreListener =listener;
+    public void setOnLoadMoreListener(OnLoadMoreListener listener) {
+        loadMoreListener = listener;
     }
 
 
-    public void setLoadCompleted(){
+    public void setLoadCompleted() {
         isLoading = false;
         removeFooterView(footView);
     }
