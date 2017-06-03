@@ -12,6 +12,7 @@ The ui and logic are reduced to minimal, just to show Minimum viable technology 
 * Event Pub/Sub: EventBus 
 * View Inject: Butter Knife
 * Dialog:  [Material Dialog](https://github.com/afollestad/material-dialogs)
+* Pull To Refresh & Load More: SwipeRefreshLayout / LoadMoreListView
 
 ## How to run
 ```
@@ -30,3 +31,4 @@ Use Android Studio 2.3+
 * 0.6 introduce butter knife as view inject framework
 * 0.7 okhttp add curl debug
 * 0.8 support loading & retry in basefragment and loading progress animate in api request
+* 0.9 Pull to refresh & Load More
