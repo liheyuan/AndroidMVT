@@ -1,6 +1,7 @@
 package com.coder4.amvt.fragment;
 
 import com.coder4.amvt.R;
+import com.coder4.amvt.agent.UserAgent;
 import com.coder4.amvt.api.ApiClient;
 import com.coder4.amvt.constant.ApiResultError;
 import com.coder4.amvt.data.NeedAuth;
@@ -31,6 +32,11 @@ public class MyTabFragment extends StaticBaseFragment {
     @Override
     protected int getBodyLayoutResourceId() {
         return R.layout.fragment_mytab;
+    }
+
+    @OnClick(R.id.card_logout)
+    public void onClickLogout() {
+        UserAgent.get().logout();
     }
 
     @OnClick(R.id.card_need_auth)

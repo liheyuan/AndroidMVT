@@ -25,8 +25,8 @@ public class LoadMoreListView extends ListView implements AbsListView.OnScrollLi
 
     private View footView;
     private OnLoadMoreListener loadMoreListener;
-    private boolean canLoadMore = true;
-    private boolean isLoading = false;
+    private volatile boolean canLoadMore = true;
+    private volatile boolean isLoading = false;
 
     public LoadMoreListView(Context context) {
         super(context);

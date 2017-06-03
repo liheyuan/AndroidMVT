@@ -21,7 +21,9 @@ public class MockLoadingFragment extends BaseFragment {
 
     @Override
     protected void setupView(LayoutInflater inflater, @Nullable Bundle savedInstanceState) {
+        super.setupView(inflater, savedInstanceState);
         initLoad();
+        setTitle("Mock Loading Demo");
     }
 
     @Override
