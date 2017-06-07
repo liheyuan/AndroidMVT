@@ -12,4 +12,5 @@
 
     <string name="toast_login_fail">Login fail</string>
     <string name="loading_success">Loading success</string>
+    <string name="github_link">https://github.com/liheyuan/AndroidMVT</string>
 </resources>
