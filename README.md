@@ -32,3 +32,4 @@ Use Android Studio 2.3+
 * 0.7 okhttp add curl debug
 * 0.8 support loading & retry in basefragment and loading progress animate in api request
 * 0.9 Pull to refresh & Load More
+* 1.0 Splash Activity
