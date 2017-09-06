@@ -19,11 +19,11 @@ public abstract class StaticBaseFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        this.inflater = inflater;
         parentView = inflater.inflate(R.layout.fragment_staticbase, container, false);
         inflateHeader();
         renderBody();
         setupView(inflater, savedInstanceState);
-        this.inflater = inflater;
         return parentView;
     }
 
