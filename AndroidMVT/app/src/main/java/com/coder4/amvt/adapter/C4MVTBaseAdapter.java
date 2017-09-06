@@ -59,4 +59,12 @@ public abstract class C4MVTBaseAdapter<T> extends BaseAdapter {
         dataList.addAll(data);
         notifyDataSetChanged();
     }
+
+    protected boolean isLast(int position) {
+        return position >= dataList.size() - 1 ;
+    }
+
+    protected boolean isFirst(int position) {
+        return position == 0;
+    }
 }

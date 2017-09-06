@@ -25,6 +25,8 @@ public class ComplexListViewDemoAdapter extends C4MVTBaseAdapter<ComplexOne> {
         TextView tvId;
         @BindView(R.id.tv_time)
         TextView tvTime;
+        @BindView(R.id.divider)
+        View divider;
 
         public MyViewHolder(View view) {
             ButterKnife.bind(this, view);
@@ -54,6 +56,10 @@ public class ComplexListViewDemoAdapter extends C4MVTBaseAdapter<ComplexOne> {
         holder.tvName.setText(object.getName());
         holder.tvId.setText(String.format("%d", object.getId()));
         holder.tvTime.setText(DateFormatUtil.format(object.getShowTime()));
+
+        if (isLast(position)) {
+            holder.divider.setVisibility(View.GONE);
+        }
 
         return convertView;
     }

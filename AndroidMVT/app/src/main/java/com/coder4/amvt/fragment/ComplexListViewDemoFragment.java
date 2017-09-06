@@ -5,7 +5,10 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.coder4.amvt.R;
 import com.coder4.amvt.adapter.ComplexListViewDemoAdapter;
@@ -56,6 +59,12 @@ public class ComplexListViewDemoFragment extends StaticBaseFragment {
     private void setupUI() {
         renderBody();
         adapter = new ComplexListViewDemoAdapter(inflater);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), String.format("click %d", position), Toast.LENGTH_SHORT).show();
+            }
+        });
         listView.setAdapter(adapter);
         adapter.updateData(getMockData());
     }

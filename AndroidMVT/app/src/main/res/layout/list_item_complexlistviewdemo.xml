@@ -33,12 +33,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_below="@+id/tv_name"
         android:layout_marginTop="10dp"
         android:text="Item Name"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="@dimen/font_size_normal"
         />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="1px"
+        android:layout_below="@+id/tv_time"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/holo_orange_dark"/>
 
 </RelativeLayout>
